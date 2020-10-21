@@ -98,8 +98,8 @@ begin
           Captura( ' [page UP] ' );
 
         27:
-          Captura( ' [ESC] ' );
-
+         // Captura( ' [ESC] ' );
+           Close;
         33:
           Captura( ' [page UP] ' );
 
